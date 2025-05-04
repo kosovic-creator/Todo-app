@@ -47,7 +47,10 @@ export default function UpdatePage() {
             fetchTodo();
         }
     }, [user]);
-
+    function showToast(message: string) {
+        setToast(message);
+        setTimeout(() => setToast(null), 2500); // Toast nestaje posle 2.5s
+      }
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
@@ -75,8 +78,9 @@ export default function UpdatePage() {
             if (response.ok) {
                 const updatedTodo = await response.json();
                 setMessage('Izmena je uspešno dodata!');
+                showToast('Napomena je uspešno izmjenjena!');
                 console.log('Updated Todo:', updatedTodo);
-                setTimeout(() => router.push('/todo'), 2);
+                setTimeout(() => router.push('/todo'), 2000);
             } else {
                 const errorData = await response.json();
                 setMessage(`Error: ${errorData.error || 'Greška pri izmjeni.'}`);
@@ -143,22 +147,38 @@ export default function UpdatePage() {
                     />
                 </div>
 
-                {message && (
+                {/* {message && (
                     <p className={`
                         ${message.includes('Izmena je uspešno dodata') ? 'text-green-500' : 'text-red-500'}
                         mb-4 text-sm font-medium
                     `}>
                         {message}
                     </p>
-                )}
+                )} */}
                 <Button type="submit" className="w-full bg-black text-white py-2 rounded-md hover:bg-black-700">
                     Izmjeni
                 </Button>
-                {error && <p className="text-red-500 mt-2">{error}</p>}
-                {success && <p className="text-green-500 mt-2">{success}</p>}
+                {/* {error && <p className="text-red-500 mt-2">{error}</p>}
+                {success && <p className="text-green-500 mt-2">{success}</p>} */}
             </form>
-        </div>
-    );
+    {toast && (
+<div
+  style={{
+    position: 'fixed',
+    top: 60,
+    right: 20,
+    background: 'white',
+    color: 'black',
+    padding: '12px 24px',
+    borderRadius: 6,
+    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+    zIndex: 9999,
+  }}
+>
+  {toast}
+</div>
+    )}
+</div>
+);
 }
-
 

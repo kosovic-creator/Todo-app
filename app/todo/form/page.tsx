@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Todo } from '@prisma/client';
 import { useRouter } from "next/navigation";
 import ConfirmDeleteModal from "@/components/TodoModals/ConfirmDeleteModal";
+import ToastHandlerDelete from "@/components/ToastHandler";
 
 
 
@@ -26,7 +27,7 @@ const GetTodoByIdForm = () => {
 
         if (!response.ok) {
           const errorData = await response.json();
-          setError(errorData.message || "Failed to fetch todo.");
+          setError(errorData.message || "Greška pri učitavanju podataka.");
           return;
         }
 
@@ -81,7 +82,7 @@ const GetTodoByIdForm = () => {
     await fetch(`/api/todo/${id}`, { method: 'DELETE' });
     setTodos(todos.filter(t => t.id !== Number(id)));
     setIsModalOpen(false);
-    
+    // <ToastHandlerDelete message="Napomena je uspešno obrisana!" />
     showToast('Napomena je uspešno obrisana!');
     setTimeout(() => router.push('/todo'), 2000);
   };
