@@ -90,7 +90,7 @@ const GetTodoByIdForm = () => {
   return (
     <div className="w-full max-w-md mx-auto p-4 bg-white">
       <div className=" w-full mx-auto p-4 bg-white ">
-        <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto p-4 bg-white shadow-md rounded">
+        <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto p-4 bg-white shadow-md rounded pl-4 pr-4 bg-gray-50">
 
           {todo && (
             <div className="flex-col text-left p-2 ">
@@ -100,18 +100,25 @@ const GetTodoByIdForm = () => {
               <p className="p-3"><>Prioritet:</> {todo.priority}</p>
               <p className="p-3"><>Završeno:</> {todo.done ? "Da" : "Ne"}</p>
               <p className="p-3"><>Detalji:</> {todo.details || "N/A"}</p>
+<div className="flex gap-3 mt-7 w-full">
+
+
+<Link href="/todo">
+                <button className="px-4 py-2 rounded bg-black text-white hover:bg-yellow-600 transition">
+                  {/* <svg  fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg> */}
+                  Nazad
+                </button>
+              </Link>
+
               <Link href="/todo/update" onClick={() => setUser((todo.id))}>
                 <button className="px-4 py-2 rounded bg-yellow-500 text-white hover:bg-yellow-600 transition">Izmjeni</button>
               </Link>
               <button className="px-4 py-2 rounded bg-red-500 text-white hover:bg-red-600 transition " onClick={() => openDeleteConfirmModal(todo.id)}>Briši</button>
-              <Link href="/todo">
-                <button className="flex items-center hover:text-zinc-600 p-2 mt-4 rounded">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                  </svg>
-                  Nazad
-                </button>
-              </Link>
+
+
+</div>
 
             </div>
           )}
