@@ -17,7 +17,7 @@ export default function RootLayout({
         <GlobalProvider>
         <Nav />
           <div className="flex flex-col items-center mt-5">{children}</div>
-          {/* <Toaster /> */}
+          <Toaster />
         </GlobalProvider>
       </body>
     </html>

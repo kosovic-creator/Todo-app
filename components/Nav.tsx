@@ -12,8 +12,8 @@ const Nav = () => {
 
 
 
-<header className="bg-black text-white ">
-  <nav className="flex justify-between items-center w-full max-w-7xl mx-auto p-4">
+<header className="bg-black text-white  ">
+  <nav className="flex justify-between items-center mt-4 p-4">
 
   <div className="flex gap-10 ml-0">
   <Link className=' p-0 ml-1'  href="/"><HomeIcon/></Link>
