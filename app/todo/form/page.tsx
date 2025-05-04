@@ -88,9 +88,9 @@ const GetTodoByIdForm = () => {
   };
 
   return (
-    <div className=" w-full mx-auto p-4 bg-white">
+    <div className="w-full max-w-md mx-auto p-4 bg-white">
       <div className=" w-full mx-auto p-4 bg-white ">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto p-4 bg-white shadow-md rounded">
 
           {todo && (
             <div className="flex-col text-left p-2 ">

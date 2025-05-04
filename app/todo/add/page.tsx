@@ -98,8 +98,8 @@ export default function AddTodoForm() {
           placeholder="Unesite detalje napomene"
           rows={4}
           maxLength={200} // Optional: Limit the number of characters
-          minLength={10} // Optional: Minimum length for the details
-         
+          minLength={5} // Optional: Minimum length for the details
+
         />
       </div>
 

@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import TodoSchema  from '@/types/index';
 import { Input } from "@/components/ui/input";
 
+
 export default function UpdatePage() {
     const [title, setTitle] = useState('');
     const [details, seDetails] = useState('');
@@ -78,7 +79,7 @@ export default function UpdatePage() {
             if (response.ok) {
                 const updatedTodo = await response.json();
                 setMessage('Izmena je uspešno dodata!');
-                showToast('Napomena je uspešno izmjenjena!');
+                // showToast('Napomena je uspešno izmjenjena!');
                 console.log('Updated Todo:', updatedTodo);
                 setTimeout(() => router.push('/todo'), 2000);
             } else {
@@ -147,7 +148,7 @@ export default function UpdatePage() {
                     />
                 </div>
 
-                {/* {message && (
+               {/* {message && (
                     <p className={`
                         ${message.includes('Izmena je uspešno dodata') ? 'text-green-500' : 'text-red-500'}
                         mb-4 text-sm font-medium
@@ -158,8 +159,8 @@ export default function UpdatePage() {
                 <Button type="submit" className="w-full bg-black text-white py-2 rounded-md hover:bg-black-700">
                     Izmjeni
                 </Button>
-                {/* {error && <p className="text-red-500 mt-2">{error}</p>}
-                {success && <p className="text-green-500 mt-2">{success}</p>} */}
+               {error && <p className="text-red-500 mt-2">{error}</p>}
+                {success && <p className="text-green-500 mt-2">{success}</p>}
             </form>
     {toast && (
 <div
