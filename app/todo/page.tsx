@@ -110,16 +110,16 @@ export default function TodoTable() {
                     />
                   </td>
                   <td>
-                    {/* <div className="flex gap-2 flex-row-reverse w-full">
-                      <Link href="/todo/form" onClick={() => setUser(String(todo.id))}>
-                        <button className="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 transition">Pregled</button>
-                      </Link>
-                    </div> */}
                     <div className="flex gap-2 flex-row-reverse w-full">
                       <Link href={`/todo/${todo.id}`} >
                         <button className="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 transition">Pregled</button>
                       </Link>
                     </div>
+                    {/* <div className="flex gap-2 flex-row-reverse w-full">
+                      <Link href={`/todo/${todo.id}`} >
+                        <button className="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 transition">Pregled</button>
+                      </Link>
+                    </div> */}
                   </td>
                 </tr>
               ))
