@@ -61,6 +61,7 @@ export default function TodoTable() {
 
   return (
     <>
+    
       <div className='container mx-auto p-0 w-full'>
         <div className='text-gray-500 p-0 flex justify-between items-center w-full'>
           <div className="flex items-center relative">
@@ -92,7 +93,7 @@ export default function TodoTable() {
           <tbody className='text-sm text-gray-700 bg-white divide-y divide-gray-300'>
             {currentTodos.length === 0 ? (
               <tr>
-                <td colSpan={5} className="text-center">{isPending ? <LoadingDots /> : <p>Učitano</p>}</td>
+                <td colSpan={5} className="text-center"> <LoadingDots /> </td>
               </tr>
             ) : (
                 currentTodos.map(todo => (
