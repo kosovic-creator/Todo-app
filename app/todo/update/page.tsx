@@ -1,20 +1,21 @@
 // filepath: /todo-app/todo-app/app/update/page.tsx
 'use client';
 import { useEffect, useState } from "react";
-import { useGlobalContext } from '@/app/context/GlobalContext';
+
 import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation';
 import TodoSchema  from '@/types/index';
 import { Input } from "@/components/ui/input";
 
 
-export default function UpdatePage() {
+export default function UpdatePage({ params }: any) {
+    const { id } = params;
     const [title, setTitle] = useState('');
     const [details, seDetails] = useState('');
     const [priority, setPriority] = useState(1);
     const [done, setDone] = useState(false);
     const [message, setMessage] = useState('');
-    const { user, setUser } = useGlobalContext();
+
     const [toast, setToast] = useState<string | null>(null);
     const router = useRouter();
     const [error, setError] = useState('');
@@ -23,7 +24,7 @@ export default function UpdatePage() {
     useEffect(() => {
         const fetchTodo = async () => {
             try {
-                const response = await fetch(`/api/todo/${user}`, {
+                const response = await fetch(`/api/todo/${id}`, {
                     method: "GET",
                 });
 
@@ -44,10 +45,10 @@ export default function UpdatePage() {
             }
         };
 
-        if (user) {
+        if (id) {
             fetchTodo();
         }
-    }, [user]);
+    }, [id]);
     function showToast(message: string) {
         setToast(message);
         setTimeout(() => setToast(null), 2500); // Toast nestaje posle 2.5s
@@ -68,7 +69,7 @@ export default function UpdatePage() {
         }
 
         try {
-            const response = await fetch(`/api/todo/${user}`, {
+            const response = await fetch(`/api/todo/${id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
