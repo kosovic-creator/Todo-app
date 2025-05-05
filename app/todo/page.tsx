@@ -61,7 +61,7 @@ export default function TodoTable() {
 
   return (
     <>
-    
+
       <div className='container mx-auto p-0 w-full'>
         <div className='text-gray-500 p-0 flex justify-between items-center w-full'>
           <div className="flex items-center relative">
@@ -113,6 +113,11 @@ export default function TodoTable() {
                     <div className="flex gap-2 flex-row-reverse w-full">
                       <Link href="/todo/form" onClick={() => setUser(String(todo.id))}>
                         <button className="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 transition">Pregled</button>
+                      </Link>
+                    </div>
+                    <div className="flex gap-2 flex-row-reverse w-full">
+                      <Link href={`/todo/${todo.id}`} >
+                        <button className="px-4 py-2 rounded bg-blue-700 text-white hover:bg-blue-600 transition">Pregled Parm</button>
                       </Link>
                     </div>
                   </td>
