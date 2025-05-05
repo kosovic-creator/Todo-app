@@ -1,12 +1,12 @@
 
-'use client";'
+
 import Link from "next/link";
 import {  HomeIcon } from "lucide-react";
 import options from "@/app/api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
 
-const Nav: React.FC = () => {
-  // const session = await getServerSession(options);
+const Nav = async () => {
+  const session = await getServerSession(options);
   //console.log(session);
   return (
     <>
@@ -20,18 +20,18 @@ const Nav: React.FC = () => {
           <div className="flex gap-10">
             <Link href="/todo">PODSJETNIK</Link>
 
-            {/* {session?.user.role == "ADMIN" && ( */}
+            {session?.user.role == "ADMIN" && (
             <Link href="/CreateUser">Dodaj Korisnika</Link>
-            {/* )}
-            {session ? ( */}
+            )}
+            {session ? (
             <>
-              {/* <p>{session.user.name}</p>
-              <p>{session.user.email}</p> */}
+             <p>{session.user.name}</p>
+              <p>{session.user.email}</p>
               <Link href="/api/auth/signout?callbackUrl=/">Logout</Link>
             </>
-            {/* ) : ( */}
+           ) : (
             <Link href="/api/auth/signin">Login</Link>
-            {/* )} */}
+            )}
           </div>
         </nav>
       </header>

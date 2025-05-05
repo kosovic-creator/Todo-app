@@ -1,4 +1,4 @@
-'use client';
+
 import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "@/components/Nav";
@@ -14,11 +14,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <GlobalProvider>
+        {/* <GlobalProvider> */}
         <Nav />
           <div className="flex flex-col items-center mt-5">{children}</div>
           <Toaster />
-        </GlobalProvider>
+        {/* </GlobalProvider> */}
       </body>
     </html>
   );
