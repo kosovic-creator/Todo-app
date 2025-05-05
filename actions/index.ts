@@ -1,6 +1,6 @@
 "use server";
 
-import { db } from "@/prisma/db";
+import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import bcrypt from "bcryptjs";
 
@@ -17,7 +17,7 @@ export async function createUserAction(
       return { message: "All fields are required" };
     }
 
-    const duplicate = await db.user.findUnique({
+    const duplicate = await prisma.user.findUnique({
       where: {
         username: username,
       },
@@ -33,7 +33,7 @@ export async function createUserAction(
 
     password = await bcrypt.hash(password, 10);
 
-    await db.user.create({ data: { name, username,email, password } });
+    await prisma.user.create({ data: { name, username,email, password } });
   } catch (err: unknown) {
     return {
       message: "Unknown Error Occured!",

@@ -2,8 +2,8 @@ import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NextAuthOptions } from "next-auth";
-import { prisma } from '@/lib/prisma';
-import { db } from "@/prisma/db";
+
+import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 
 const options: NextAuthOptions = {
@@ -54,7 +54,7 @@ const options: NextAuthOptions = {
           return null;
         }
 
-        const user = await db.user.findUnique({
+        const user = await prisma.user.findUnique({
           where: { username: credentials.username },
         });
 

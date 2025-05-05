@@ -1,39 +1,40 @@
 
+'use client";'
 import Link from "next/link";
 import {  HomeIcon } from "lucide-react";
+import options from "@/app/api/auth/[...nextauth]/options";
+import { getServerSession } from "next-auth";
 
-
-const Nav = () => {
-
+const Nav: React.FC = () => {
+  // const session = await getServerSession(options);
   //console.log(session);
   return (
     <>
+      <header className="bg-black text-white">
+        <nav className="flex justify-between items-center mt-4 p-4">
+          <div className="flex gap-10 ml-0">
+            <Link className="p-0 ml-1" href="/">
+              <HomeIcon />
+            </Link>
+          </div>
+          <div className="flex gap-10">
+            <Link href="/todo">PODSJETNIK</Link>
 
-
-
-
-<header className="bg-black text-white  ">
-  <nav className="flex justify-between items-center mt-4 p-4">
-
-  <div className="flex gap-10 ml-0">
-  <Link className=' p-0 ml-1'  href="/"><HomeIcon/></Link>
-  </div>
-    <div className="flex gap-10">
-      <Link href="/todo">PODSJETNIK</Link>
-      <Link href="/CreateUser">Create User</Link>
-    </div>
-    {/* <ul> */}
-      {/* <li><Link href="/reducer/counter_reducer">CounterReducer</Link></li>
-      <li><Link href="/reducer/slozeni_reducer">SlozeniReducer</Link></li>
-      <li><Link href="/reducer/reducer_with_two_states">UdemiReducer</Link></li>
-      <li><Link href="/server-client/sever-client-components">ClientServer</Link></li>
-      <li><Link href="/server-client/client-server-url/client">ClientServerUrl</Link></li>
-      <li><Link href="/serever-action">CServerAction</Link></li> */}
-
-    {/* </ul> */}
-
-  </nav>
-</header>
+            {/* {session?.user.role == "ADMIN" && ( */}
+            <Link href="/CreateUser">Dodaj Korisnika</Link>
+            {/* )}
+            {session ? ( */}
+            <>
+              {/* <p>{session.user.name}</p>
+              <p>{session.user.email}</p> */}
+              <Link href="/api/auth/signout?callbackUrl=/">Logout</Link>
+            </>
+            {/* ) : ( */}
+            <Link href="/api/auth/signin">Login</Link>
+            {/* )} */}
+          </div>
+        </nav>
+      </header>
     </>
   );
 };
