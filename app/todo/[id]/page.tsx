@@ -7,9 +7,9 @@ import { useRouter } from "next/navigation";
 import ConfirmDeleteModal from "@/components/TodoModals/ConfirmDeleteModal";
 
 
-export default function Page({ params }: any) {
+export default function Page({ params }: { params: Promise<{ id: string }> }) {
+    const [id, setId] = useState<string | null>(null);
 
-    const { id } = params;
     const [todoId, setTodoId] = useState("");
     const [todo, setTodo] = useState<any | null>(null);
     const [error, setError] = useState("");
@@ -18,6 +18,15 @@ export default function Page({ params }: any) {
     const [todos, setTodos] = useState<Todo[]>([]);
     const [selectedItemId, setSelectedItemId] = useState<string | number | null>(null);
     const [toast, setToast] = useState<string | null>(null);
+
+    useEffect(() => {
+        async function resolveParams() {
+            const resolved = await params;
+            setId(resolved.id);
+        }
+        resolveParams();
+    }, [params]);
+
 
     useEffect(() => {
         const fetchTodo = async () => {
@@ -111,7 +120,7 @@ export default function Page({ params }: any) {
                     </button>
                   </Link>
 
-                  <Link href={`/todo/update/${todo.id}`} >
+                  <Link href={`/todo/${todo.id}/update/`} >
                     <button className="px-4 py-2 rounded bg-yellow-500 text-white hover:bg-yellow-600 transition">Izmjeni</button>
                   </Link>
                   <button className="px-4 py-2 rounded bg-red-500 text-white hover:bg-red-600 transition " onClick={() => openDeleteConfirmModal(todo.id)}>Briši</button>

@@ -32,14 +32,13 @@ export async function DELETE(request: NextRequest) {
   return NextResponse.json({ message: 'Deleted' });
 }
 
-export async function GET(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  const { id: idString } = await params;
-  const id = parseInt(idString, 10);
+export async function GET(request: NextRequest) {
+  const url = new URL(request.url);
+  const id = parseInt(url.pathname.split('/').pop() || '', 10); // Extract `id` from the URL
 
-
+  if (isNaN(id)) {
+    return NextResponse.json({ message: 'Invalid ID' }, { status: 400 });
+  }
 
   const todo = await prisma.todo.findUnique({
     where: { id },
