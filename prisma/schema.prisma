@@ -7,6 +7,7 @@
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["driverAdapters"]
+  output          = "./node_modules/@prisma/client" // Explicitly specify the output path
 }
 
 
@@ -15,7 +16,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id       Int    @id @default(autoincrement())
+  name     String
+  username String @unique
+  password String
+  email    String @unique
 
+  role     Role   @default(USER)
+}
+
+enum Role {
+  ADMIN
+  USER
+}
 
 model Todo {
   id       Int   @id @default(autoincrement())

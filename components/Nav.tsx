@@ -20,6 +20,7 @@ const Nav = () => {
   </div>
     <div className="flex gap-10">
       <Link href="/todo">PODSJETNIK</Link>
+      <Link href="/CreateUser">Create User</Link>
     </div>
     {/* <ul> */}
       {/* <li><Link href="/reducer/counter_reducer">CounterReducer</Link></li>
