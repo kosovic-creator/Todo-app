@@ -2,7 +2,13 @@
 import { useEffect, useState } from "react";
 
 import Link from "next/link";
-import { Todo } from '@prisma/client';
+type Todo = {
+  id: number;
+  title: string;
+  priority: string;
+  done: boolean;
+  details?: string;
+};
 import { useRouter } from "next/navigation";
 import ConfirmDeleteModal from "@/components/TodoModals/ConfirmDeleteModal";
 
