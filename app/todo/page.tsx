@@ -2,9 +2,17 @@
 import { useGlobalContext } from '@/app/context/GlobalContext';
 import { useEffect, useState, useTransition } from 'react';
 
+type Todo = {
+  id: number;
+  title: string;
+  details: string;
+  priority: string;
+  done: boolean;
+};
+
 import ConfirmDeleteModal from '@/components/TodoModals/ConfirmDeleteModal';
 import Link from 'next/link';
-import { Todo } from '@prisma/client';
+
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import LoadingDots from '@/components/loading-dots';
@@ -115,7 +123,7 @@ export default function TodoTable() {
                         <button className="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 transition">Pregled</button>
                       </Link>
                     </div>
-           
+
                   </td>
                 </tr>
               ))
